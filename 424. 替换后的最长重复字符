@@ -1,0 +1,53 @@
+给你一个仅由大写英文字母组成的字符串，你可以将任意位置上的字符替换成另外的字符，总共可最多替换 k 次。
+在执行上述操作后，找到包含重复字母的最长子串的长度。
+
+注意:
+字符串长度 和 k 不会超过 104。
+
+未解决
+
+
+public class Solution {
+    public int CharacterReplacement(string s, int k) {
+        if(s.Length<=k){
+            return s.Length;
+        }
+        char[] Sa = s.ToCharArray();
+        int max = 0;
+        for(int i =0 ;i <s.Length;i++){
+            int a = 0,b = k,c = i;
+            while(b>=0&&c<s.Length){
+                if(Sa[i] != Sa[c]){
+                    b--;
+                    if(b<0){
+                        break;
+                    }
+                }
+                a++;
+                c++;
+            }
+            if(a>max){
+                max = a;
+            }
+        }
+        for(int i =s.Length-1 ;i >0;i--){
+            int a = 0,b = k,c = i;
+            while(b>=0&&c>=0){
+                if(Sa[i] != Sa[c]){
+                    b--;
+                    if(b<0){
+                        break;
+                    }
+                }
+                a++;
+                c--;
+            }
+            if(a>max){
+                max = a;
+            }
+        }
+        return max;
+    }
+}
+
+提示：滑动窗口
