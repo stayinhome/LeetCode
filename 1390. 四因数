@@ -1,0 +1,30 @@
+给你一个整数数组 nums，请你返回该数组中恰有四个因数的这些整数的各因数之和。
+
+如果数组中不存在满足题意的整数，则返回 0 。
+
+public class Solution {
+    public int SumFourDivisors(int[] nums) {
+        int count = 0;
+        foreach(int i in nums){ //遍历数组
+            int k = 0,icount = 0,j=(int)Math.Sqrt(i); //因为 (i/2)^2>i 当i>4时必定成立 i=(i^(1/2))^2,所以 (i/2)>(i^(1/2))
+            for(int s =1;s<=j;s++){
+                if(i%s == 0){
+                    icount += (s+i/s);
+                    if(s==i/s){
+                        k = 0;  //清空k防止 误判k==4
+                        break;
+                    }
+                    k+=2;
+                }
+                if(k>=5){
+                    break;
+                }
+            }
+            if(k == 4){
+                count = count + icount ;
+            }
+        }
+        return count;
+
+    }
+}
