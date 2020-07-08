@@ -1,0 +1,31 @@
+给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+
+你可以假设数组中无重复元素。
+
+public class Solution {
+    public int SearchInsert(int[] nums, int target) {
+        if(nums.Length == 0 ||nums[0]>target){
+            return 0;
+        }
+        if(nums[nums.Length-1]<target){
+            return nums.Length;
+        }
+        return Search(nums,0,nums.Length-1,target);
+    }
+
+    public int Search(int[] nums ,int start , int end ,int target){
+        int i = (start+end)/2;
+        if(nums[i]==target){
+            return i;
+        }
+        if((nums[i]<target&&target<nums[i+1])||nums[i+1]==target){
+            return i+1;
+        }
+        if(nums[i]<target){
+            return Search(nums,i,end,target);
+        }else
+        {
+            return Search(nums,start,i,target);
+        }
+    }
+}
