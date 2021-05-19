@@ -1,0 +1,38 @@
+给定两个字符串 s 和 t，判断它们是否是同构的。
+
+如果 s 中的字符可以按某种映射关系替换得到 t ，那么这两个字符串是同构的。
+
+每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身。
+
+public class Solution {
+    public bool IsIsomorphic(string s, string t) 
+    {
+        Dictionary<char,char> funs  = new Dictionary<char,char>();
+        Dictionary<char,char> funt = new Dictionary<char,char>();
+        for (int counter = 0; counter < s.Length; counter++)
+        {
+            if(funs.ContainsKey(s[counter]))
+            {
+                if(funs[s[counter]] != t[counter]){
+                    return false;
+                }
+
+            }
+            
+            if(funt.ContainsKey(t[counter]))
+            {
+                if(funt[t[counter]] != s[counter])
+                {
+                    return false;
+                }
+            }
+
+            funs[s[counter]] = t[counter];
+            funt[t[counter]] = s[counter];
+
+
+        }
+        return true;
+
+    }
+}
