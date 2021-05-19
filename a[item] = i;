@@ -1,0 +1,25 @@
+
+给定一个整数数组和一个整数 k，判断数组中是否存在两个不同的索引 i 和 j，使得 nums [i] = nums [j]，并且 i 和 j 的差的 绝对值 至多为 k。
+
+
+
+public class Solution {
+    public bool ContainsNearbyDuplicate(int[] nums, int k) 
+    {
+        Dictionary<int ,int > a = new Dictionary<int,int>();
+        int i =0;
+        foreach (int item in nums)
+        {
+            if(a.ContainsKey(item))
+            {
+                if((i - a[item]) <= k)
+                {
+                    return true;
+                }             
+            }
+            a[item] = i;
+            i++;
+        }
+        return false;
+    }
+}
