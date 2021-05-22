@@ -1,0 +1,22 @@
+给定一个包含 [0, n] 中 n 个数的数组 nums ，找出 [0, n] 这个范围内没有出现在数组中的那个数。
+
+public class Solution {
+    public int MissingNumber(int[] nums) 
+    {
+        int len = nums.Length + 1;
+        int sum = 0;
+        foreach(int item in nums){
+            sum += item;
+        }
+
+        int n = (2 * sum  + len - len * len) / (2 * len);
+
+        int ans = (2 *n *len + len * len - len)/2 - sum;
+        if(ans < 0)
+        {
+            ans = (2 *(n+1) *len + len * len- len)/2 - sum;
+        }
+
+        return ans;
+    }
+}
