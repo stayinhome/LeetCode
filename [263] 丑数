@@ -1,0 +1,37 @@
+
+给你一个整数 n ，请你判断 n 是否为 丑数 。如果是，返回 true ；否则，返回 false 。
+
+
+public class Solution {
+    public bool IsUgly(int n) 
+    {
+        if(n == 1)
+        {
+            return true;
+        }
+        if( n== 0)
+        {
+            return false;
+        }
+
+        if(n%2 == 0)
+        {
+            n = n /2;
+            return IsUgly(n);
+        }
+        if(n%3 == 0)
+        {
+            n = n /3;
+            return IsUgly(n);
+        }
+        if(n%5 == 0)
+        {
+            n = n /5;
+            return IsUgly(n);
+        }
+
+
+        return false;
+
+    }
+}
