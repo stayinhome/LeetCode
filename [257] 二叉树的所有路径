@@ -1,0 +1,45 @@
+给定一个二叉树，返回所有从根节点到叶子节点的路径。
+
+说明: 叶子节点是指没有子节点的节点。
+
+public class Solution {
+    public List<string> ans = new List<string>();
+
+    public IList<string> BinaryTreePaths(TreeNode root) 
+    {
+        StringBuilder a = new StringBuilder();
+        if(root != null)
+        {
+            BinaryTreePaths(root,  a);
+        }
+
+
+        return ans;
+    }
+
+    public void BinaryTreePaths(TreeNode root, StringBuilder a)
+    {
+        a.Append(root.val);
+        if(root.left != null || root.right != null)
+        {
+            a.Append("->");
+        }
+        else
+        {
+            ans.Add(a.ToString());
+            return ;
+        }
+        StringBuilder left = new StringBuilder(a.ToString());
+        if(root.left != null )
+        {
+            BinaryTreePaths( root.left,  left);
+        }
+        if(root.right != null )
+        {
+            BinaryTreePaths( root.right,  a);
+        }
+
+    }
+
+
+}
