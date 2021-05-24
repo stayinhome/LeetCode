@@ -1,0 +1,72 @@
+编写一个函数，以字符串作为输入，反转该字符串中的元音字母。
+
+public class Solution {
+
+    public string ReverseVowels(string s) 
+    {
+        Char[] chs = s.ToCharArray();
+        int left = 0 ;
+        int right = chs.Length - 1;
+        for (; left < chs.Length; left++)
+        {
+            if(isYuanyin(chs[left]))
+            {
+                break;
+            }
+        }
+        for (; right > 0; right--)
+        {
+            if(isYuanyin(chs[right]))
+            {
+                break;
+            }
+        }
+        while(left<right)
+        {
+            char Temp = chs[left];
+            chs[left] = chs[right];
+            chs[right] = Temp;
+
+            for (left++; left < chs.Length; left++)
+            {
+                if(isYuanyin(chs[left]))
+                {
+                    break;
+                }
+            }
+            for (right--; right > 0; right--)
+            {
+                if(isYuanyin(chs[right]))
+                {
+                    break;
+                }
+            }
+
+        }
+
+        return new string(chs);
+
+
+    }
+
+
+    public bool isYuanyin(char a)
+    {
+        switch (a)
+        {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+            case 'A':
+            case 'E':
+            case 'I':
+            case 'O':
+            case 'U':
+                return true;
+            default:
+                return false;
+        }
+    }
+}
