@@ -1,0 +1,33 @@
+给定两个数组，编写一个函数来计算它们的交集。
+
+
+public class Solution {
+    public int[] Intersect(int[] nums1, int[] nums2) 
+    {
+        Dictionary<int,int> num1 = new Dictionary<int,int>();
+        List<int> lis = new List<int>();
+        foreach(int item in nums1){
+            int count = 0;
+            num1.TryGetValue(item, out count);
+            num1[item] = ++count;
+        }
+        foreach(int item in nums2){
+            int count = 0;
+            num1.TryGetValue(item, out count);
+            num1[item] = --count;
+            if(count>=0)
+            {
+                lis.Add(item);
+            }
+        }
+        int[] ans = new int[lis.Count];
+        int i =0;
+        foreach(int item in lis){
+            ans[i] = item;
+            i++;
+        }
+        return ans;
+
+
+    }
+}
