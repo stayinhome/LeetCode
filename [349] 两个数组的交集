@@ -1,0 +1,30 @@
+给定两个数组，编写一个函数来计算它们的交集。
+
+public class Solution {
+    public int[] Intersection(int[] nums1, int[] nums2) 
+    {
+        HashSet<int> num1 = new HashSet<int>();
+        HashSet<int> num2 = new HashSet<int>();
+        List<int> lis = new List<int>();
+        foreach(int item in nums1){
+            num1.Add(item);
+        }
+        foreach (int item in nums2)
+        {
+            if(num1.Contains(item) && !num2.Contains(item))
+            {
+                num2.Add(item);
+                lis.Add(item);
+            }
+        }
+        int[] ans = new int[lis.Count];
+        int i =0;
+        foreach(int item in lis){
+            ans[i] = item;
+            i++;
+        }
+
+        return ans;
+
+    }
+}
