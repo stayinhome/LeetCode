@@ -1,0 +1,52 @@
+给你一个整数 turnedOn ，表示当前亮着的 LED 的数量，返回二进制手表可以表示的所有可能时间。你可以 按任意顺序 返回答案。
+
+小时不会以零开头：
+
+例如，"01:00" 是无效的时间，正确的写法应该是 "1:00" 。
+分钟必须由两位数组成，可能会以零开头：
+
+例如，"10:2" 是无效的时间，正确的写法应该是 "10:02" 。
+
+public class Solution {
+
+    private Dictionary<int,int> key = new Dictionary<int,int>();
+    public IList<string> ReadBinaryWatch(int turnedOn) 
+    {
+        Inie();
+        List<string> ans = new List<string>();
+        for (int i = 0; i < 12; i++)
+        {
+            for (int j = 0; j < 60; j++)
+            {
+             if(key[i] +  key[j]==turnedOn)   
+             {
+                 ans.Add(i.ToString()+":"+(j < 10 ? "0"+j.ToString() : j.ToString()));
+             }
+            }
+        }
+        return ans;
+
+    }
+
+    public void Inie()
+    {
+        key.Add(0,0);key.Add(1,1);key.Add(2,1);key.Add(3,2);
+        key.Add(4,1);key.Add(5,2);key.Add(6,2);key.Add(7,3);
+        key.Add(8,1);key.Add(9,2);key.Add(10,2);key.Add(11,3);
+        key.Add(12,2);key.Add(13,3);key.Add(14,3);key.Add(15,4);
+        key.Add(16,1);key.Add(17,2);key.Add(18,2);key.Add(19,3);
+        key.Add(20,2);key.Add(21,3);key.Add(22,3);key.Add(23,4);
+        key.Add(24,2);key.Add(25,3);key.Add(26,3);key.Add(27,4);
+        key.Add(28,3);key.Add(29,4);key.Add(30,4);key.Add(31,5);
+        key.Add(32,1);key.Add(33,2);key.Add(34,2);key.Add(35,3);
+        key.Add(36,2);key.Add(37,3);key.Add(38,3);key.Add(39,4);
+        key.Add(40,2);key.Add(41,3);key.Add(42,3);key.Add(43,4);
+        key.Add(44,3);key.Add(45,4);key.Add(46,4);key.Add(47,5);
+        key.Add(48,2);key.Add(49,3);key.Add(50,3);key.Add(51,4);
+        key.Add(52,3);key.Add(53,4);key.Add(54,4);key.Add(55,5);
+        key.Add(56,3);key.Add(57,4);key.Add(58,4);key.Add(59,5);
+
+    }
+
+
+}
