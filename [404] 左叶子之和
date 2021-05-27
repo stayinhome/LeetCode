@@ -1,0 +1,23 @@
+计算给定二叉树的所有左叶子之和。
+
+public class Solution {
+    public int Sum = 0;
+    public int SumOfLeftLeaves(TreeNode root) 
+    {
+        if(root.left != null)
+        {
+            if(root.left.left ==null && root.left.right == null)
+            {
+                Sum += root.left.val;
+            }else
+            {
+            SumOfLeftLeaves(root.left);
+            }
+        }
+        if(root.right != null){
+            SumOfLeftLeaves(root.right);
+        }
+        return Sum;
+    }
+
+}
