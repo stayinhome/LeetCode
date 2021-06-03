@@ -1,0 +1,51 @@
+给你一个非空数组，返回此数组中 第三大的数 。如果不存在，则返回数组中最大的数。
+
+public class Solution {
+        public int ThirdMax(int[] nums)
+        {
+            Stack<int> st1 = new Stack<int>();
+            Stack<int> st2 = new Stack<int>();
+
+            foreach (int item in nums)
+            {
+                while (st1.Count != 0)
+                {
+                    if (st1.Peek() < item)
+                    {
+                        st2.Push(st1.Pop());
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+                if (st1.Count < 3 )
+                {
+                    if(!(st1.Count != 0 && st1.Peek() == item))
+                    {
+                        st1.Push(item);
+                    }
+                    while (st1.Count < 3 && st2.Count != 0)
+                    {
+                        st1.Push(st2.Pop());
+                    }
+                }
+
+            }
+
+            if (st1.Count < 3)
+            {
+                int a = st1.Pop();
+                while (st1.Count != 0)
+                {
+                    a = st1.Pop();
+                }
+                return a;
+            }
+
+            return st1.Peek();
+
+        }
+
+}
