@@ -1,0 +1,15 @@
+给你一个 正 整数 num ，输出它的补数。补数是对该数的二进制表示取反。
+
+public class Solution {
+    public int FindComplement(int num) 
+    {
+        for (int i = 0; i < 32; i++)
+        {
+            if(Math.Pow(2,i)>num){
+                return Convert.ToInt32(Math.Pow(2,i) - 1 - num);
+            }
+        }
+        return 0;
+
+    }
+}
