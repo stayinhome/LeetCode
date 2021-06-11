@@ -12,17 +12,11 @@ public class Solution {
         public int[] ConstructRectangle(int area)
         {
             int mid = Convert.ToInt32(Math.Sqrt(area));
-            int mark = area % mid;
-            while(mark != 0)
+            while(area % mid != 0)
             {
-                mid++;
-                mark = area % mid;
+                mid--;
             }
-            int e = area / mid;
 
-            if(mid > e){
-                return new int[] {mid,e};
-            }
-                return new int[] {e,mid};
+            return new int[] {area / mid,mid};
         }
 }
