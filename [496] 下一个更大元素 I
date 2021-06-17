@@ -1,0 +1,35 @@
+给你两个 没有重复元素 的数组 nums1 和 nums2 ，其中nums1 是 nums2 的子集。
+
+请你找出 nums1 中每个元素在 nums2 中的下一个比其大的值。
+
+nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位置的右边的第一个比 x 大的元素。如果不存在，对应位置输出 -1 。
+
+ public class Solution {
+    public int[] NextGreaterElement(int[] nums1, int[] nums2) 
+    {
+        List<int> ans = new List<int>();
+        foreach (int item in nums1)
+        {
+            bool mark = false;
+            bool BeSelect = false;
+            foreach (int item2 in nums2)
+            {
+                if(mark && item2 > item)
+                {
+                    ans.Add(item2);
+                    BeSelect = true;
+                    break;
+                }
+                if(item == item2){
+                    mark = true;
+                }
+            }
+            if(!BeSelect){
+               ans.Add(-1); 
+            }
+
+        }
+        return ans.ToArray();
+
+    }
+}
