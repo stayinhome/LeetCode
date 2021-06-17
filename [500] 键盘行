@@ -1,0 +1,63 @@
+给你一个字符串数组 words ，只返回可以使用在 美式键盘 同一行的字母打印出来的单词。键盘如下图所示。
+
+美式键盘 中：
+
+第一行由字符 "qwertyuiop" 组成。
+第二行由字符 "asdfghjkl" 组成。
+第三行由字符 "zxcvbnm" 组成。
+
+public class Solution {
+    public string[] FindWords(string[] words) 
+    {
+        Dictionary<char, int> dic = new Dictionary<char, int>();
+        dic.Add('q', 1); dic.Add('Q', 1);
+        dic.Add('w', 1); dic.Add('W', 1);
+        dic.Add('e', 1); dic.Add('E', 1);
+        dic.Add('r', 1); dic.Add('R', 1);
+        dic.Add('t', 1); dic.Add('T', 1);
+        dic.Add('y', 1); dic.Add('Y', 1);
+        dic.Add('u', 1); dic.Add('U', 1);
+        dic.Add('i', 1); dic.Add('I', 1);
+        dic.Add('o', 1); dic.Add('O', 1);
+        dic.Add('p', 1); dic.Add('P', 1);
+        dic.Add('a', 2); dic.Add('A', 2);
+        dic.Add('s', 2); dic.Add('S', 2);
+        dic.Add('d', 2); dic.Add('D', 2);
+        dic.Add('f', 2); dic.Add('F', 2);
+        dic.Add('g', 2); dic.Add('G', 2);
+        dic.Add('h', 2); dic.Add('H', 2);
+        dic.Add('j', 2); dic.Add('J', 2);
+        dic.Add('k', 2); dic.Add('K', 2);
+        dic.Add('l', 2); dic.Add('L', 2);
+        dic.Add('z', 3); dic.Add('Z', 3);
+        dic.Add('x', 3); dic.Add('X', 3);
+        dic.Add('c', 3); dic.Add('C', 3);
+        dic.Add('v', 3); dic.Add('V', 3);
+        dic.Add('b', 3); dic.Add('B', 3);
+        dic.Add('n', 3); dic.Add('N', 3); 
+        dic.Add('m', 3); dic.Add('M', 3);
+
+        List<string> ans = new List<string>();
+        foreach(string item in words)
+        {
+            int last = dic[item[0]];
+            bool mark = true;
+            foreach (char a in item)
+            {
+                if(last != dic[a])
+                {
+                    mark = false;
+                    break;
+                }
+            }
+            if (mark)
+            {
+                ans.Add(item);
+            }
+
+        }
+
+        return ans.ToArray();
+
+    }
+}
