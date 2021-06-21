@@ -1,0 +1,35 @@
+给定一个整数，将其转化为7进制，并以字符串形式输出。
+
+
+public class Solution {
+    public string ConvertToBase7(int num)
+    {
+        List<int> numlist = new List<int>();
+        StringBuilder sb = new StringBuilder();
+        bool flge = false;
+        if(num < 0)    
+        {
+            sb.Append("-");
+            flge = true;
+        }
+        int i = num % 7;
+        numlist.Add(flge ? -i : i);
+        num /= 7;
+        while (num != 0)
+        {
+            i = num % 7;
+            numlist.Add(flge ? -i : i);
+            num /= 7;
+        }
+        numlist.Reverse();
+        foreach(int item in numlist)
+        {
+            sb.Append(item);
+        }
+
+
+        return sb.ToString();
+
+
+    }
+}
