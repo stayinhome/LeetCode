@@ -1,0 +1,40 @@
+给出 N 名运动员的成绩，找出他们的相对名次并授予前三名对应的奖牌。前三名运动员将会被分别授予 “金牌”，“银牌” 和“ 铜牌”（"Gold Medal", "Silver Medal", "Bronze Medal"）。
+
+(注：分数越高的选手，排名越靠前。)
+
+
+        public string[] FindRelativeRanks(int[] score)
+        {
+            List<string> ans = new List<string>();
+
+            for(int i = 0; i < score.Length; i++)
+            {
+                int count = score.Length;
+                for (int j = 0; j < score.Length; j++)
+                {
+                    if(score[i]> score[j])
+                    {
+                        count--;
+                    }
+                }
+                if(count == 1)
+                {
+                    ans.Add("Gold Medal");
+                }
+                else if (count == 2)
+                {
+                    ans.Add("Silver Medal");
+                }
+                else if(count == 3)
+                {
+                    ans.Add("Bronze Medal");
+                }
+                else
+                {
+                    ans.Add(count.ToString());
+                }
+            }
+
+            return ans.ToArray();
+    
+    }
