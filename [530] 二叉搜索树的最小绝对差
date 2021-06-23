@@ -1,22 +1,21 @@
 给你一棵所有节点为非负值的二叉搜索树，请你计算树中任意两节点的差的绝对值的最小值。
 
-
 public class Solution {
             public int GetMinimumDifference(TreeNode root)
             {
                 int ans = Int32.MaxValue;
                 int pre = -1;
-                dfs(root, ref ans, pre);
+                dfs(root, ref ans,ref pre);
                 return ans;
             }
 
-            public void dfs(TreeNode root ,ref int ans,int pre)
+            public void dfs(TreeNode root ,ref int ans,ref int pre)
             {
                 if(root == null)
                 {
                     return;
                 }
-                dfs(root.left,ref ans, pre);
+                dfs(root.left,ref ans,ref pre);
                 if(pre == -1)
                 {
                     pre = root.val;
@@ -27,7 +26,7 @@ public class Solution {
                     pre = root.val;
 
                 }
-                dfs(root.right,ref ans, pre);
+                dfs(root.right,ref ans,ref pre);
 
 
             }
