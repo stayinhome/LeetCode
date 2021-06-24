@@ -1,0 +1,19 @@
+给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+
+public class Solution {
+    public string ReverseWords(string s)
+    {
+        string[] srr = s.Split(' ');
+        StringBuilder ans = new StringBuilder();
+        foreach(string item in srr)
+        {
+            char[] tmp = item.ToCharArray();
+            Array.Reverse(tmp);
+
+            ans.Append(new String(tmp) + " ");
+        }
+        return ans.ToString(0, ans.Length - 1);
+
+
+    }
+}
