@@ -1,0 +1,28 @@
+给定一个 N 叉树，返回其节点值的 前序遍历 。
+
+N 叉树 在输入中按层序遍历进行序列化表示，每组子节点由空值 null 分隔（请参见示例）。
+
+public class Solution {
+    public IList<int> Preorder(Node root)
+    {
+        List<int> ans = new List<int>();
+        if(root == null){
+            return ans;
+        }
+        Stack<Node> stack = new Stack<Node>();
+        stack.Push(root);
+        while (stack.Count != 0)
+        {
+            Node node = stack.Pop();
+            ans.Add(node.val);
+            for(int i = node.children.Count - 1; i >= 0; i--)
+            {
+                stack.Push(node.children[i]);
+            }
+
+        }
+        return ans;
+
+
+    }
+}
