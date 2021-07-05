@@ -1,0 +1,34 @@
+给定一个二叉树，检查它是否是镜像对称的。
+
+public class Solution {
+    public bool IsSymmetric(TreeNode root)
+    {
+        if(root == null)
+        {
+            return true;
+        }
+        return IsSameTree(root.left, root.right);
+
+    }
+
+    public bool IsSameTree(TreeNode p, TreeNode q)
+    {
+        if (p == null && q == null)
+        {
+            return true;
+        }
+        else if (p == null || q == null)
+        {
+            return false;
+        }
+        else if (p.val != q.val)
+        {
+            return false;
+        }
+        else
+        {
+            return IsSameTree(p.left, q.right) && IsSameTree(p.right, q.left);
+        }
+
+    }
+}
