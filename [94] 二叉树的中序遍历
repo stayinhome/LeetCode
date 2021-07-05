@@ -1,0 +1,18 @@
+给定一个二叉树的根节点 root ，返回它的 中序 遍历。
+
+public class Solution {
+    public IList<int> InorderTraversal(TreeNode root)
+    {
+        List<int> ans = new List<int>();
+        if(root == null)
+        {
+            return ans;
+        }
+
+        ans.AddRange(InorderTraversal(root.left));
+        ans.Add(root.val);
+        ans.AddRange(InorderTraversal(root.right));
+
+        return ans;
+    }
+}
