@@ -1,0 +1,38 @@
+给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 高度平衡 二叉搜索树。
+
+高度平衡 二叉树是一棵满足「每个节点的左右两个子树的高度差的绝对值不超过 1 」的二叉树。
+
+public class Solution {
+        public TreeNode SortedArrayToBST(int[] nums)
+        {
+            if(nums.Length <= 0)
+            {
+                return new TreeNode();
+            }
+            int mid = (0 + nums.Length - 1) / 2;
+
+            TreeNode ans = new TreeNode();
+            ans.val = nums[mid];
+            ans.left = SortedArrayToBST(nums, 0, mid-1);
+            ans.right = SortedArrayToBST(nums, mid+1, nums.Length - 1);
+
+            return ans;
+
+        }
+        public TreeNode SortedArrayToBST(int[] nums,int left ,int right)
+        {
+            if(left > right)
+            {
+                return null;
+            }
+            TreeNode ans = new TreeNode();
+            int mid = (left + right) / 2;
+            ans.val = nums[mid];
+            if (left < right)
+            {
+                ans.left = SortedArrayToBST(nums, left, mid - 1);
+                ans.right = SortedArrayToBST(nums, mid + 1, right);
+            }
+            return ans;
+        }
+}
