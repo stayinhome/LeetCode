@@ -1,0 +1,23 @@
+给定 n 个整数，找出平均数最大且长度为 k 的连续子数组，并输出该最大平均数。
+
+ 
+ public class Solution {
+    public double FindMaxAverage(int[] nums, int k) 
+    {
+        int sum = 0;
+        int index = nums.Length;
+        for(int i = 0; i < k; i++)
+        {
+            sum += nums[i];
+        }
+        int maxSum = sum;
+
+        for(int i = k; i < index; i++)
+        {
+            sum = sum - nums[i - k] + nums[i];
+            maxSum = Math.Max(sum, maxSum);
+        }
+        return 1.0 * maxSum / k;
+
+    }
+}
