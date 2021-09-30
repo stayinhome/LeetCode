@@ -1,0 +1,40 @@
+    给定一个字符串 s，计算具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是连续的。
+
+重复出现的子串要计算它们出现的次数。
+    
+    public class Solution
+    {
+        public int CountBinarySubstrings(string s)
+        {
+            char lastchar = s[0];
+            List<int> list = new List<int>();
+            int count = 0;
+            foreach(char item in s)
+            {
+                if(item == lastchar)
+                {
+                    count++;
+                }
+                else
+                {
+                    list.Add(count);
+                    count = 1;
+                    lastchar = item;
+                }
+            }
+            list.Add(count);
+            int ans = 0;
+
+            if (list.Count != 1)
+            {
+                for (int index = 1; index < list.Count; index++)
+                {
+                    ans += Math.Min(list[index], list[index - 1]);
+
+                }
+            }
+
+
+            return ans;
+        }
+    }
