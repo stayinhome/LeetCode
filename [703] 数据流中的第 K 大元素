@@ -1,0 +1,52 @@
+    设计一个找到数据流中第 k 大元素的类（class）。注意是排序后的第 k 大元素，不是第 k 个不同的元素。
+
+请实现 KthLargest 类：
+
+KthLargest(int k, int[] nums) 使用整数 k 和整数流 nums 初始化对象。
+int add(int val) 将 val 插入数据流 nums 后，返回当前数据流中第 k 大的元素。
+    
+    
+    public class KthLargest
+    {
+        private Stack<int> _nums = new Stack<int>();
+
+        private Stack<int> TempStack = new Stack<int>();
+
+        private int _k = 0;
+
+        public KthLargest(int k, int[] nums)
+        {
+            Array.Sort(nums);
+            Array.Reverse(nums);
+            _k = k;
+            foreach(int i in nums)
+            {
+                if (_nums.Count < _k)
+                {
+                    _nums.Push(i);
+                }
+            }
+
+        }
+
+        public int Add(int val)
+        {
+            while(_nums.Count != 0 && _nums.Peek() < val)
+            {
+                TempStack.Push(_nums.Pop());
+            }
+            
+            if(_nums.Count < _k)
+            {
+                _nums.Push(val);
+            }
+
+            while(_nums.Count < _k)
+            {
+                _nums.Push(TempStack.Pop());
+            }
+
+            return _nums.Peek();
+
+        }
+    }
