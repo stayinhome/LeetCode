@@ -1,0 +1,151 @@
+给你一个字符串 s ，将该字符串中的大写字母转换成相同的小写字母，返回新的字符串。
+
+public class Solution {
+        public string ToLowerCase(string s)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach(char item in s)
+            {
+
+                switch (item)
+                {
+                    case 'A':
+                        {
+                            result.Append("a");
+                            break;
+                        }
+                    case 'B':
+                        {
+                            result.Append("b");
+                            break;
+                        }
+                    case 'C':
+                        {
+                            result.Append("c");
+                            break;
+                        }
+                    case 'D':
+                        {
+                            result.Append("d");
+                            break;
+                        }
+                    case 'E':
+                        {
+                            result.Append("e");
+                            break;
+                        }
+                    case 'F':
+                        {
+                            result.Append("f");
+                            break;
+                        }
+                    case 'G':
+                        {
+                            result.Append("g");
+                            break;
+                        }
+                    case 'H':
+                        {
+                            result.Append("h");
+                            break;
+                        }
+                    case 'I':
+                        {
+                            result.Append("i");
+                            break;
+                        }
+                    case 'J':
+                        {
+                            result.Append("j");
+                            break;
+                        }
+                    case 'K':
+                        {
+                            result.Append("k");
+                            break;
+                        }
+                    case 'L':
+                        {
+                            result.Append("l");
+                            break;
+                        }
+                    case 'M':
+                        {
+                            result.Append("m");
+                            break;
+                        }
+                    case 'N':
+                        {
+                            result.Append("n");
+                            break;
+                        }
+                    case 'O':
+                        {
+                            result.Append("o");
+                            break;
+                        }
+                    case 'P':
+                        {
+                            result.Append("p");
+                            break;
+                        }
+                    case 'Q':
+                        {
+                            result.Append("q");
+                            break;
+                        }
+                    case 'R':
+                        {
+                            result.Append("r");
+                            break;
+                        }
+                    case 'S':
+                        {
+                            result.Append("s");
+                            break;
+                        }
+                    case 'T':
+                        {
+                            result.Append("t");
+                            break;
+                        }
+                    case 'U':
+                        {
+                            result.Append("u");
+                            break;
+                        }
+                    case 'V':
+                        {
+                            result.Append("v");
+                            break;
+                        }
+                    case 'W':
+                        {
+                            result.Append("w");
+                            break;
+                        }
+                    case 'X':
+                        {
+                            result.Append("x");
+                            break;
+                        }
+                    case 'Y':
+                        {
+                            result.Append("y");
+                            break;
+                        }
+                    case 'Z':
+                        {
+                            result.Append("z");
+                            break;
+                        }
+                    default:
+                        {
+                            result.Append(item);
+                            break;
+                        }
+                }
+            }
+            return result.ToString();
+        }
+}
