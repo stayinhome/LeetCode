@@ -1,0 +1,14 @@
+给你二叉树的根节点 root ，返回它节点值的 前序 遍历。
+
+public class Solution {
+    public IList<int> PreorderTraversal(TreeNode root) {
+            List<int> ans = new List<int>();
+            if(root != null)
+            {
+                ans.Add(root.val);
+                ans.AddRange(PreorderTraversal(root.left));
+                ans.AddRange(PreorderTraversal(root.right));
+            }
+            return ans;
+    }
+}
