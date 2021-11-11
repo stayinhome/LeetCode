@@ -1,0 +1,14 @@
+给定一个二叉树，返回它的 后序 遍历。
+
+public class Solution {
+    public IList<int> PostorderTraversal(TreeNode root) {
+        List<int> ans = new List<int>();
+        if(root != null)
+        {
+            ans.AddRange(PostorderTraversal(root.left));
+            ans.AddRange(PostorderTraversal(root.right));
+            ans.Add(root.val);
+        }
+        return ans;
+    }
+}
