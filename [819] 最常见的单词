@@ -1,0 +1,45 @@
+给定一个段落 (paragraph) 和一个禁用单词列表 (banned)。返回出现次数最多，同时不在禁用列表中的单词。
+
+题目保证至少有一个词不在禁用列表中，而且答案唯一。
+
+禁用列表中的单词用小写字母表示，不含标点符号。段落中的单词不区分大小写。答案都是小写字母。
+
+public class Solution {
+        public string MostCommonWord(string paragraph, string[] banned)
+        {
+            paragraph = paragraph.ToLower();
+            Dictionary<string, int> de = new Dictionary<string, int>();
+            string[] arr = paragraph.Split(new char[]{'!','?','\'',',',';','.',' ' });
+            foreach(string item in arr)
+            {
+                if (!banned.Contains<string>(item)&& !string.IsNullOrEmpty(item))
+                {
+                    if (de.ContainsKey(item))
+                    {
+                        de[item] += 1;
+                    }
+                    else
+                    {
+                        de.Add(item, 1);
+                    }
+                }
+            }
+
+
+            string ans = "";
+            int count = 0;
+            foreach(KeyValuePair<string, int> keyValuePair in de)
+            {
+                if(keyValuePair.Value > count)
+                {
+                    count = keyValuePair.Value;
+                    ans = keyValuePair.Key;
+                }
+
+            }
+
+            return ans;
+
+        }
+
+}
