@@ -1,0 +1,18 @@
+给你一个字符串 columnTitle ，表示 Excel 表格中的列名称。返回该列名称对应的列序号。
+
+public class Solution {
+        public int TitleToNumber(string columnTitle)
+        {
+            int ans  = 0;
+            int pow = 1;
+            for (int i = columnTitle.Length - 1; i >= 0; i--)
+            {
+                ans += ((int)columnTitle[i] - 64) * pow;
+                pow *= 26;
+
+
+            }
+ 
+            return ans;
+        }
+}
