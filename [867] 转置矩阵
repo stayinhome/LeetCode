@@ -1,0 +1,25 @@
+给你一个二维整数数组 matrix， 返回 matrix 的 转置矩阵 。
+
+public class Solution {
+    public int[][] Transpose(int[][] matrix) {
+
+            int row = matrix.Length;
+            int col = matrix[0].Length;
+
+            int[][] ans = new int[col][];
+            for (int c = 0; c < col; c++)
+            {
+                ans[c] = new int[row];
+                for (int r = 0; r < row; r++)
+                {
+                    ans[c][r] = matrix[r][c];
+
+                }
+
+            }
+
+
+
+            return ans;
+    }
+}
