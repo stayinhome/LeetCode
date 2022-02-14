@@ -1,0 +1,51 @@
+   请考虑一棵二叉树上所有的叶子，这些叶子的值按从左到右的顺序排列形成一个 叶值序列 。
+   
+   public class Solution
+    {
+        public bool LeafSimilar(TreeNode root1, TreeNode root2)
+        {
+            if(root1 == null  || root2 == null)
+            {
+                return false;
+            }
+
+            List<int> listroot1 =new List<int>();
+            GetNodeList(root1, ref listroot1);
+            List<int> listroot2 = new List<int>();
+            GetNodeList(root2, ref listroot2);
+
+
+            if (listroot1.Count != listroot2.Count)
+            {
+                return false;
+            }
+            
+            for(int i = 0;i< listroot1.Count;i++)
+            {
+                if(listroot1[i] != listroot2[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+
+        }
+
+        public void GetNodeList(TreeNode root,ref List<int> list)
+        {
+            if(root.left !=null)
+            {
+                GetNodeList(root.left,ref list);
+            }
+            if(root.right != null)
+            {
+                GetNodeList(root.right,ref list);
+            }
+
+            if(root.right == null && root.left == null)
+            {
+                list.Add(root.val);
+            }
+
+        }
+    }
