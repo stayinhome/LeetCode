@@ -1,0 +1,48 @@
+给你一个字符串 s ，根据下述规则反转字符串：
+
+所有非英文字母保留在原有位置。
+所有英文字母（小写或大写）位置反转。
+返回反转后的 s 。
+
+ 
+
+public class Solution {
+        public string ReverseOnlyLetters(string s)
+        {
+             List<char> lis = s.ToList<char>();
+
+            int Start = 0;
+            int End = lis.Count-1;
+            while(Start < End)
+            {
+                if (!(('a' <= lis[Start] && lis[Start] <= 'z' ) || ('A' <= lis[Start] && lis[Start] <= 'Z')))
+                {
+                    Start++;
+                }
+                else if (!(('a' <= lis[End] && lis[End] <= 'z') || ('A' <= lis[End] && lis[End] <= 'Z')))
+                {
+                    End--;
+                }
+                else
+                {
+                    char temp = lis[Start];
+                    lis[Start] = lis[End];
+                    lis[End] = temp;
+
+                    Start++;
+                    End--;
+                }
+
+
+            }
+            string result = "";
+            foreach(char itme in lis)
+            {
+                result += itme;
+            }
+            return result;
+
+
+        }
+
+}
