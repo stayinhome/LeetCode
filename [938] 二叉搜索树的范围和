@@ -1,0 +1,30 @@
+    给定二叉搜索树的根结点 root，返回值位于范围 [low, high] 之间的所有结点的值的和。
+    
+    public class Solution
+    {
+        public int RangeSumBST(TreeNode root, int low, int high)
+        {
+            int result = 0;
+            if(root == null)
+            {
+                return 0;
+            }
+
+            if(low <= root.val && root.val <= high)
+            {
+                result += root.val;
+                result += RangeSumBST(root.left, low, high);
+                result += RangeSumBST(root.right, low, high);
+            }
+            else if (root.val < low)
+            {
+                result += RangeSumBST(root.right, low, high);
+            }
+            else if (high < root.val)
+            {
+                result += RangeSumBST(root.left, low, high);
+            }
+            
+            return result;
+        }
+    }
