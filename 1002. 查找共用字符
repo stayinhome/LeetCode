@@ -1,0 +1,41 @@
+给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ 包括重复字符），并以数组形式返回。你可以按 任意顺序 返回答案。
+
+public class Solution {
+        public IList<string> CommonChars(string[] words)
+        {
+            int[] minfreg = new int[26];
+            Array.Fill<int>(minfreg,int.MaxValue);
+
+            foreach(string word in words)
+            {
+                int[] freg = new int[26];
+                foreach(char c in word)
+                {
+                    freg[c - 'a']++;
+                }
+
+                for(int i = 0; i < 26; i++)
+                {
+                    minfreg[i] = Math.Min(minfreg[i],freg[i]);
+                }
+
+
+            }
+
+            List<string> result = new List<string>();
+
+            for (int i = 0 ; i < 26; i++)
+            {
+                for(int j = 0; j < minfreg[i]; j++)
+                {
+                    result.Add(Convert.ToString((char)('a' + i )));
+                }
+            }
+
+            return result;
+
+
+
+        }
+
+}
