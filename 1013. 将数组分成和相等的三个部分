@@ -1,0 +1,39 @@
+
+给你一个整数数组 arr，只有可以将其划分为三个和相等的 非空 部分时才返回 true，否则返回 false。
+
+形式上，如果可以找出索引 i + 1 < j 且满足 (arr[0] + arr[1] + ... + arr[i] == arr[i + 1] + arr[i + 2] + ... + arr[j - 1] == arr[j] + arr[j + 1] + ... + arr[arr.length - 1]) 就可以将数组三等分。
+
+来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/partition-array-into-three-parts-with-equal-sum
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+public class Solution {
+        public bool CanThreePartsEqualSum(int[] arr)
+        {
+            int sum = 0;
+           foreach(int i in arr)
+            {
+                sum += i;
+            }
+           if(sum % 3 !=0)
+            {
+                return false;
+            }
+            int mark = sum / 3;
+            int mark2 = mark;
+            int indexSUM = 0;
+            foreach(int i in arr)
+            {
+                mark2 -= i;
+                if (mark2 == 0)
+                {
+                    mark2 = mark;
+                    indexSUM++;
+                }
+
+            }
+
+            return indexSUM >= 3;
+
+
+        }
+}s
