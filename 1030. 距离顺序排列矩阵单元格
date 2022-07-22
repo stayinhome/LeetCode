@@ -1,0 +1,41 @@
+给定四个整数 row ,   cols ,  rCenter 和 cCenter 。有一个 rows x cols 的矩阵，你在单元格上的坐标是 (rCenter, cCenter) 。
+
+返回矩阵中的所有单元格的坐标，并按与 (rCenter, cCenter) 的 距离 从最小到最大的顺序排。你可以按 任何 满足此条件的顺序返回答案。
+
+单元格(r1, c1) 和 (r2, c2) 之间的距离为|r1 - r2| + |c1 - c2|。
+
+ public class Solution
+    {
+        public int[] dr = { 1, 1, -1, -1 };
+        public int[] dc = { 1, -1, -1, 1 };
+
+        public int[][] AllCellsDistOrder(int rows, int cols, int rCenter, int cCenter)
+        {
+
+            List<int[]> resule = new List<int[]>();
+            int maxDist = Math.Max(rCenter, rows - 1 - rCenter) + Math.Max(cCenter, cols - 1 - cCenter);
+            int row = rCenter, col = cCenter;
+            resule.Add(new int[] {row,col });
+            for(int dist = 1;dist <= maxDist; dist++)
+            {
+                row--;
+                for(int i = 0; i < 4; i++)
+                {
+                    while((i%2 == 0 && row != rCenter)||(i % 2 != 0 && col != cCenter))
+                    {
+                        if(row >= 0 && row < rows && col >=0 && col < cols)
+                        {
+                            resule.Add(new int[] { row, col });
+
+                        }
+                        row += dr[i];
+                        col += dc[i];
+
+                    }
+                }
+
+            }
+
+            return resule.ToArray();
+        }
+    }
