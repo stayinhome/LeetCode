@@ -1,0 +1,57 @@
+给你一个字符串 date ，按 YYYY-MM-DD 格式表示一个 现行公元纪年法 日期。返回该日期是当年的第几天。
+
+public class Solution {
+        public int DayOfYear(string date)
+        {
+            string[] dates = date.Split('-');
+
+            int Year = Convert.ToInt32(dates[0]);
+            bool IsRun = (Year % 4 == 0 && Year % 100 != 0) || Year % 400 == 0;
+            int monten = Convert.ToInt32(dates[1]);
+            int result = 0;
+            for (int i = 1 ; i < monten; i++){
+
+                switch (i)
+                {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                        {
+                            result += 31;
+                            break;
+                        }
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        {
+                            result += 30;
+                            break;
+                        }
+                    case 2:
+                        {
+                            if (IsRun)
+                            {
+                                result += 29;
+                            }
+                            else
+                            {
+                                result += 28;
+                            }
+                            break;
+                        }
+                }
+
+            }
+
+            result += Convert.ToInt32(dates[2]);
+
+            return result;
+
+
+        }
+
+}
