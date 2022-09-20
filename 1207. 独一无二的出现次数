@@ -1,0 +1,38 @@
+给你一个整数数组 arr，请你帮忙统计数组中每个数的出现次数。
+
+如果每个数的出现次数都是独一无二的，就返回 true；否则返回 false。
+
+public class Solution {
+        public bool UniqueOccurrences(int[] arr)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            foreach(int i in arr)
+            {
+                if (dic.ContainsKey(i))
+                {
+                    dic[i]++;
+                }
+                else
+                {
+                    dic.Add(i, 1);
+                }
+
+            }
+
+            Dictionary<int, int> dic2 = new Dictionary<int, int>();
+
+            foreach(KeyValuePair<int,int> kv in dic)
+            {
+                if (dic2.ContainsKey(kv.Value))
+                {
+                    return false;
+                }
+                else
+                {
+                    dic2.Add(kv.Value, kv.Key);
+                }
+            }
+            return true;
+        }
+
+}
