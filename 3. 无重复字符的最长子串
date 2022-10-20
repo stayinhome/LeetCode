@@ -1,0 +1,28 @@
+给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+
+public class Solution {
+        public int LengthOfLongestSubstring(string s)
+        {
+            int result = 0;
+
+            Queue<char> que = new Queue<char>();
+
+            foreach(char c in s)
+            {
+                if (que.Contains(c))
+                {
+                    char cc = que.Dequeue();
+                    while(cc != c)
+                    {
+                        cc = que.Dequeue();
+                    }
+                }
+                que.Enqueue(c);
+                result = Math.Max(que.Count,result);
+            }
+
+
+            return result;
+
+        }
+}
