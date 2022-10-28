@@ -1,0 +1,35 @@
+
+给你一个非递减的 有序 整数数组，已知这个数组中恰好有一个整数，它的出现次数超过数组元素总数的 25%。
+
+请你找到并返回这个整数
+
+
+
+public class Solution {
+        public int FindSpecialInteger(int[] arr)
+        {
+            double length = arr.Length / 4;
+
+            Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
+
+            foreach(int i in arr)
+            {
+                if (keyValuePairs.ContainsKey(i))
+                {
+                    keyValuePairs[i]++;
+                    if(keyValuePairs[i] > length)
+                    {
+                        return i;
+                    }
+                }
+                else
+                {
+                    keyValuePairs.Add(i, 1);
+                }
+            }
+
+            return arr[0];
+
+
+        }
+}
