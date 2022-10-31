@@ -1,0 +1,28 @@
+给你一个整数数组 nums，请你返回其中位数为 偶数 的数字的个数。
+
+    public class Solution
+    {
+        public int FindNumbers(int[] nums)
+        {
+            int result = 0;
+
+            foreach(int i in nums)
+            {
+
+                if((9<i && i < 100 )||
+                    (999 < i && i < 10000)||
+                    (i == 100000)
+
+                    )
+                {
+                    result++;
+                }
+
+            }
+
+
+
+
+            return result;
+        }
+    }
