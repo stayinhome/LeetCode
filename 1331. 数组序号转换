@@ -1,0 +1,34 @@
+    
+给你一个整数数组 arr ，请你将数组中的每个元素替换为它们排序后的序号。
+
+序号代表了一个元素有多大。序号编号的规则如下：
+
+序号从 1 开始编号。
+一个元素越大，那么序号越大。如果两个元素相等，那么它们的序号相同。
+每个数字的序号都应该尽可能地小。
+    
+    
+    public class Solution
+    {
+        public int[] ArrayRankTransform(int[] arr)
+        {
+            int[] arr2 = new int[arr.Length];
+            Array.Copy(arr, 0, arr2, 0, arr.Length);
+            Array.Sort(arr2);
+            Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
+
+            foreach(int item in arr2)
+            {
+                if(!keyValuePairs.ContainsKey(item))
+                    keyValuePairs.Add(item, keyValuePairs.Count + 1);
+            }
+
+            for(int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = keyValuePairs[arr[i]];
+            }
+            return arr;
+
+
+        }
+    }
