@@ -1,0 +1,122 @@
+给你一个大小为 m * n 的矩阵 mat，矩阵由若干军人和平民组成，分别用 1 和 0 表示。
+
+请你返回矩阵中战斗力最弱的 k 行的索引，按从最弱到最强排序。
+
+如果第 i 行的军人数量少于第 j 行，或者两行军人数量相同但 i 小于 j，那么我们认为第 i 行的战斗力比第 j 行弱。
+
+军人 总是 排在一行中的靠前位置，也就是说 1 总是出现在 0 之前。
+
+    public class Solution
+    {
+        public int[] KWeakestRows(int[][] mat, int k)
+        {
+            int m = mat.Length, n = mat[0].Length;
+            Tuple<int, int>[] power = new Tuple<int, int>[m];
+            for(int i = 0;i< m; i++)
+            {
+                int l = 0, r = n - 1, pos = -1;
+                while(l <= r)
+                {
+                    int mid = (l + r) / 2;
+                    if(mat[i][mid] == 0)
+                    {
+                        r = mid - 1;
+                    }
+                    else
+                    {
+                        pos = mid;
+                        l = mid + 1;
+                    }
+                }
+
+                power[i] = Tuple.Create(pos + 1, i);
+
+            }
+            Tuple<int, int>[] min = Helper.GetLeastNumber(power, k);
+            Array.Sort(min);
+            int[] result = new int[k];
+            for(int i = 0 ;i < k; i++ ){
+                result[i] = min[i].Item2;
+            }
+            return result;
+
+        }
+    }
+
+    class Helper
+    {
+
+        public static Tuple<int,int>[] GetLeastNumber(Tuple<int,int>[] arr, int k)
+        {
+            RandomizedSelected(arr, 0, arr.Length - 1, k);
+            Tuple<int, int>[] result = new Tuple<int, int>[k];
+            Array.Copy(arr, 0, result, 0, k);
+            return result;
+
+        }
+
+        static void RandomizedSelected(Tuple<int,int>[] arr,int l, int r,int k)
+        {
+            if(l >= r)
+            {
+                return;
+            }
+            int pos = Partition(arr, l, r);
+            int num = pos - l + 1;
+            if(k == num)
+            {
+                return;
+            }
+            if(k < num)
+            {
+                RandomizedSelected(arr, l, pos - 1, k);
+            }
+            else
+            {
+                RandomizedSelected(arr, pos + 1, r, k -  num);
+
+            }
+
+
+        }
+
+
+
+        static int Partition(Tuple<int, int>[] arr , int l , int r)
+        {
+            Tuple<int, int> pivot = arr[r];
+            int i = l - 1;
+            for(int j = l; j <= r - 1; ++j)
+            {
+                if(Compare(arr[j],pivot) <= 0)
+                {
+                    i++;
+                    Swap(arr, i, j);
+                }
+            }
+            Swap(arr, i+1, r);
+            return i + 1;
+
+        }
+
+        static void Swap(Tuple<int, int>[] arr , int i ,int j)
+        {
+            Tuple<int, int> temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+
+        static int Compare(Tuple<int, int> a, Tuple<int, int> b)
+        {
+            if(a.Item1 != b.Item1)
+            {
+                return a.Item1 - b.Item1;
+            }
+            else
+            {
+                return a.Item2 - b.Item2;
+
+            }
+        }
+
+    }
