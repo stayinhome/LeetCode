@@ -1,0 +1,64 @@
+一个 2D 网格中的 峰值 是指那些 严格大于 其相邻格子(上、下、左、右)的元素。
+
+给你一个 从 0 开始编号 的 m x n 矩阵 mat ，其中任意两个相邻格子的值都 不相同 。找出 任意一个 峰值 mat[i][j] 并 返回其位置 [i,j] 。
+
+你可以假设整个矩阵周边环绕着一圈值为 -1 的格子。
+
+要求必须写出时间复杂度为 O(m log(n)) 或 O(n log(m)) 的算法
+
+    public class Solution
+    {
+        public int[] FindPeakGrid(int[][] mat)
+        {
+            int col = 0;
+            int row = 0;
+
+            while (!IsHeigh(mat, col, row))
+            {
+                int tcol = col;
+                int trow = row;
+                if(mat[col][row] < getNumber(mat, tcol - 1, trow))
+                {
+                    col = tcol - 1;
+                }
+                if (mat[col][row] < getNumber(mat, tcol, trow - 1))
+                {
+                    row = trow - 1;
+                }
+                if (mat[col][row] < getNumber(mat, tcol + 1, trow))
+                {
+                    col = tcol + 1;
+                }
+                if (mat[col][row] < getNumber(mat, tcol, trow + 1))
+                {
+                    row = trow + 1;
+                }
+            }
+
+
+            return new int[] { col, row };
+        }
+
+        private int getNumber(int[][] mat,int col,int row)
+        {
+            if(col >= mat.Length || col < 0 || row >= mat[0].Length || row < 0)
+            {
+                return -1;
+            }
+
+            return mat[col][row];
+        }
+
+        private bool IsHeigh(int[][] mat, int col, int row)
+        {
+            if(mat[col][row] > getNumber(mat,col -1,row) &&
+                mat[col][row] > getNumber(mat, col, row - 1) &&
+                mat[col][row] > getNumber(mat, col + 1, row) &&
+                mat[col][row] > getNumber(mat, col , row + 1))
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
