@@ -1,0 +1,41 @@
+给你一个 m * n 的矩阵，矩阵中的数字 各不相同 。请你按 任意 顺序返回矩阵中的所有幸运数。
+
+幸运数 是指矩阵中满足同时下列两个条件的元素：
+
+在同一行的所有元素中最小
+在同一列的所有元素中最大
+
+    public class Solution
+    {
+        public IList<int> LuckyNumbers(int[][] matrix)
+        {
+            int result = 0,k=0;
+            for(int i =0;i< matrix.Length; i++)
+            {
+                int rowMin = matrix[i][0];
+                int c =0;
+                for (int j = 0; j < matrix[0].Length; j++)
+                {
+                    if(rowMin > matrix[i][j])
+                    {
+                        rowMin = matrix[i][j];
+                        c = j;
+                    }
+                }
+                if(result < rowMin)
+                {
+                    result = rowMin;
+                    k= c;
+                }
+            }
+
+            for (int i = 0; i <  matrix.Length; i++) {
+            if (result < matrix[i][k]) {
+                return  new List<int>() ;
+            }
+            }
+
+            return new List<int>() { result };
+
+        }
+    }
