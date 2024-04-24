@@ -1,0 +1,25 @@
+给你一个字符串数组 words ，数组中的每个字符串都可以看作是一个单词。请你按 任意 顺序返回 words 中是其他单词的子字符串的所有单词。
+
+如果你可以删除 words[j] 最左侧和/或最右侧的若干字符得到 words[i] ，那么字符串 words[i] 就是 words[j] 的一个子字符串。
+
+ 
+
+public class Solution {
+        public IList<string> StringMatching(string[] words)
+        {
+            List<string> result = new List<string>();
+            for(int  i = 0; i < words.Length; i++)
+            {
+                for(int j = 0; j < words.Length; j++)
+                {
+                    if (i != j && words[j].Contains(words[i]))
+                    {
+                        result.Add(words[i]);
+                        break;
+                    }
+                }
+            }
+
+                return result;
+        }
+}
