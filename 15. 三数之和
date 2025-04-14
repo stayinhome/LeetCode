@@ -1,0 +1,46 @@
+给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请你返回所有和为 0 且不重复的三元组。
+
+注意：答案中不可以包含重复的三元组。
+
+     public class Solution
+    {
+        public IList<IList<int>> ThreeSum(int[] nums)
+        {
+            Array.Sort(nums);
+            List<IList<int>> ret = new List<IList<int>>();
+            for(int First = 0;First < nums.Length; First++)
+            {
+                if (First > 0 && nums[First] == nums[First - 1])
+                {
+                    continue;
+                }
+
+                int Third = nums.Length - 1;
+                for (int Second = First + 1; Second < nums.Length; Second++)
+                {
+                    if (Second > First + 1 && nums[Second] == nums[Second - 1])
+                    {
+                        continue;
+                    }
+
+                    while(Second < Third &&  + nums[Second] + nums[Third] > -nums[First])
+                    {
+                        --Third;
+                    }
+
+                    if(Second == Third)
+                    {
+                        break;
+                    }
+                    if (nums[First] + nums[Second] + nums[Third] == 0)
+                    {
+                        ret.Add(new List<int>() { nums[First], nums[Second], nums[Third] });
+                    }
+
+                }
+            }
+
+
+            return ret;
+        }
+    }
