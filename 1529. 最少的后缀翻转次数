@@ -1,0 +1,25 @@
+给你一个长度为 n 、下标从 0 开始的二进制字符串 target 。你自己有另一个长度为 n 的二进制字符串 s ，最初每一位上都是 0 。你想要让 s 和 target 相等。
+
+在一步操作，你可以选择下标 i（0 <= i < n）并翻转在 闭区间 [i, n - 1] 内的所有位。翻转意味着 '0' 变为 '1' ，而 '1' 变为 '0' 。
+
+返回使 s 与 target 相等需要的最少翻转次数。
+
+    public class Solution
+    {
+        public int MinFlips(string target)
+        {
+            int ret = 0;
+            char c = '0';
+            for(int i = 0; i < target.Length; i++)
+            {
+                if(target[i] != c)
+                {
+                    ret++;
+                    c = target[i];
+                }
+            }
+
+
+            return ret;
+        }
+    }
