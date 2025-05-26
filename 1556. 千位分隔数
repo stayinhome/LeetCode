@@ -1,0 +1,30 @@
+给你一个整数 n，请你每隔三位添加点（即 "." 符号）作为千位分隔符，并将结果以字符串格式返回。
+
+ public class Solution {
+        public string ThousandSeparator(int n)
+        {
+            if(n == 0)
+            {
+                return "0";
+            }
+            string result = "";
+            int count = 3;
+            while(n  > 0)
+            {
+                if (count == 0)
+                {
+                    result  = "." +  result;
+                    count = 3;
+                }
+
+                result = (n % 10).ToString() + result;
+                count--;
+
+
+
+                n = n / 10;
+            }
+
+            return result;
+        }
+}
