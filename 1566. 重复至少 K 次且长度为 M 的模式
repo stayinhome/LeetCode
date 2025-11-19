@@ -1,0 +1,49 @@
+给你一个正整数数组 arr，请你找出一个长度为 m 且在数组中至少重复 k 次的模式。
+
+模式 是由一个或多个值组成的子数组（连续的子序列），连续 重复多次但 不重叠 。 模式由其长度和重复次数定义。
+
+如果数组中存在至少重复 k 次且长度为 m 的模式，则返回 true ，否则返回  false 。
+
+    public class Solution
+    {
+        public bool ContainsPattern(int[] arr, int m, int k)
+        {
+            if(m == 0 || k == 0)
+            {
+                return true;
+            }
+            if(m*k > arr.Length)
+            {
+                return false;
+            }
+
+            int end = arr.Length - m * k;
+            for(int i = 0;i<= end; i++)
+            {
+                bool result = true;
+                for(int a = 0; a < m; a++)
+                {
+                    int startIndex = i + a;
+                    for (int j = 0; j < k; j++)
+                    {
+                        if (arr[startIndex] != arr[startIndex + m * j])
+                        {
+                            result = false;
+                            break;
+                        }
+                    }
+                    if (!result)
+                    {
+                        break;
+                    }
+                }
+                if (result)
+                {
+                    return true;
+                }
+
+            }
+            return false;
+
+        }
+    }
