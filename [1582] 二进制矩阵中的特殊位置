@@ -1,0 +1,58 @@
+给定一个 m x n 的二进制矩阵 mat，返回矩阵 mat 中特殊位置的数量。
+
+如果位置 (i, j) 满足 mat[i][j] == 1 并且行 i 与列 j 中的所有其他元素都是 0（行和列的下标从 0 开始计数），那么它被称为 特殊 位置。
+
+public class Solution {
+    public int NumSpecial(int[][] mat) {
+        int result = 0;
+        for(int x = 0 ;x < mat.Length ; x++)
+        {
+            int indexY = -1 ;int count = 0;
+            for(int y = 0 ; y < mat[x].Length ; y++)
+            {
+                if (mat[x][y] == 1)
+                {
+                    count++;
+                    if(count > 1)
+                    {
+                        break;
+                    }
+                    indexY = y;
+                }
+            }
+
+            if(count == 1)
+            {
+                for(int indexX = 0 ; indexX < mat.Length ; indexX++)
+                {
+                    if (mat[indexX][indexY] == 1)
+                    {
+                        count++;
+                        if(count > 2)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if(count == 2)
+                {
+                    result++;
+                }
+            }
+
+        }
+
+        return result;
+    }
+}
+
+
+官方题解思路：
+题目给定了一个大小为 m×n 的矩阵 mat，并满足矩阵中的任意元素为 1 或者 0。
+现在给出特殊位置的定义：如果 mat[i][j]=1,i∈[0,m),j∈[0,n)，并且第 i 行和第 j 列的其他元素均为 0，则位置 (i,j) 为特殊位置。
+那么我们枚举每一个位置，然后按照特殊位置的定义来判断该位置是否满足要求，又因为矩阵中的每一个元素只能为 1 或者 0，所以我们可以预处理出每一行和列的和来快速的得到每一行和列中的 1 的个数。
+
+作者：力扣官方题解
+链接：https://leetcode.cn/problems/special-positions-in-a-binary-matrix/solutions/1796614/er-jin-zhi-ju-zhen-zhong-de-te-shu-wei-z-kan4/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
